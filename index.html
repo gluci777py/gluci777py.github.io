@@ -1061,7 +1061,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  emailjs.init('m9jYznFQrOM0vj_mF');
+  emailjs.init({ publicKey: 'm9jYznFQrOM0vj_mF', blockHeadless: false });
 
   function openModal() {
     document.getElementById('modalOverlay').classList.add('active');
@@ -1111,6 +1111,7 @@
     const welcomeParams = {
       to_name: fname,
       to_email: email,
+      email: email,
       from_name: 'GavricFX'
     };
 
