@@ -1383,45 +1383,42 @@
       return;
     }
 
-    if (typeof emailjs === 'undefined') {
-      alert('Email service not loaded. Please refresh the page and try again.');
-      return;
-    }
-
     const btn = document.querySelector('.modal-btn');
     btn.textContent = 'Sending...';
     btn.disabled = true;
 
-    const serviceID = 'service_0b0agzl';
-    const notifyTemplate = 'template_6u8z1qz';
-    const welcomeTemplate = 'template_wevs9cm';
-
-    const notifyParams = {
-      from_name: fname + ' ' + lname,
-      from_email: email,
-      country: country
-    };
-
-    const welcomeParams = {
-      to_name: fname,
-      to_email: email,
-      email: email,
-      from_name: 'GavricFX'
-    };
-
-    // Send both emails, show success regardless
-    emailjs.send(serviceID, notifyTemplate, notifyParams)
-      .then(function() {
-        emailjs.send(serviceID, welcomeTemplate, welcomeParams).catch(function(){});
-        document.getElementById('modalForm').style.display = 'none';
-        document.getElementById('modalSuccess').style.display = 'block';
+    // Send via Formspree
+    fetch('https://formspree.io/f/mwvanbky', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name: fname + ' ' + lname,
+        email: email,
+        country: country,
+        _replyto: email,
+        _subject: 'New Lead: ' + fname + ' ' + lname
       })
-      .catch(function(err) {
-        console.error('EmailJS error:', JSON.stringify(err));
-        // Show success screen anyway - email may still arrive
-        document.getElementById('modalForm').style.display = 'none';
-        document.getElementById('modalSuccess').style.display = 'block';
-      });
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      // Show success
+      document.getElementById('modalForm').style.display = 'none';
+      document.getElementById('modalSuccess').style.display = 'block';
+      // Also fire EmailJS welcome email to client
+      if (typeof emailjs !== 'undefined') {
+        emailjs.send('service_0b0agzl', 'template_wevs9cm', {
+          to_name: fname,
+          to_email: email,
+          email: email,
+          from_name: 'GavricFX'
+        }).catch(function(){});
+      }
+    })
+    .catch(function(err) {
+      console.error('Formspree error:', err);
+      document.getElementById('modalForm').style.display = 'none';
+      document.getElementById('modalSuccess').style.display = 'block';
+    });
   }
 
   document.addEventListener('keydown', (e) => {
