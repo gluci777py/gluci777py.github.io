@@ -1387,38 +1387,26 @@
     btn.textContent = 'Sending...';
     btn.disabled = true;
 
-    // Send via Formspree
-    fetch('https://formspree.io/f/xnjlbvnk', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        name: fname + ' ' + lname,
+    // Show success screen immediately
+    document.getElementById('modalForm').style.display = 'none';
+    document.getElementById('modalSuccess').style.display = 'block';
+
+    // Submit via hidden form to Formspree
+    var hiddenForm = document.getElementById('hiddenFormspree');
+    document.getElementById('hf_name').value = fname + ' ' + lname;
+    document.getElementById('hf_email').value = email;
+    document.getElementById('hf_country').value = country;
+    hiddenForm.submit();
+
+    // Also fire EmailJS welcome email to client
+    if (typeof emailjs !== 'undefined') {
+      emailjs.send('service_0b0agzl', 'template_wevs9cm', {
+        to_name: fname,
+        to_email: email,
         email: email,
-        country: country,
-        _replyto: email,
-        _subject: 'New Lead: ' + fname + ' ' + lname
-      })
-    })
-    .then(function(res) { return res.json(); })
-    .then(function(data) {
-      // Show success
-      document.getElementById('modalForm').style.display = 'none';
-      document.getElementById('modalSuccess').style.display = 'block';
-      // Also fire EmailJS welcome email to client
-      if (typeof emailjs !== 'undefined') {
-        emailjs.send('service_0b0agzl', 'template_wevs9cm', {
-          to_name: fname,
-          to_email: email,
-          email: email,
-          from_name: 'GavricFX'
-        }).catch(function(){});
-      }
-    })
-    .catch(function(err) {
-      console.error('Formspree error:', err);
-      document.getElementById('modalForm').style.display = 'none';
-      document.getElementById('modalSuccess').style.display = 'block';
-    });
+        from_name: 'GavricFX'
+      }).catch(function(){});
+    }
   }
 
   document.addEventListener('keydown', (e) => {
@@ -1619,6 +1607,16 @@
 
   </div>
 </div>
+
+
+<!-- HIDDEN FORMSPREE FORM -->
+<iframe name="hiddenFrame" style="display:none;"></iframe>
+<form id="hiddenFormspree" action="https://formspree.io/f/xnjlbvnk" method="POST" target="hiddenFrame" style="display:none;">
+  <input type="hidden" id="hf_name" name="name" value="">
+  <input type="hidden" id="hf_email" name="email" value="">
+  <input type="hidden" id="hf_country" name="country" value="">
+  <input type="hidden" name="_subject" value="New Lead from GavricFX">
+</form>
 
 </body>
 </html>
