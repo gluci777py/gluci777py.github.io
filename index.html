@@ -1328,9 +1328,28 @@
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
-  emailjs.init({ publicKey: 'm9jYznFQrOM0vj_mF', blockHeadless: false });
+  // Load EmailJS with fallback
+  (function() {
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+    script.onerror = function() {
+      var s2 = document.createElement('script');
+      s2.src = 'https://unpkg.com/@emailjs/browser@3/dist/email.min.js';
+      document.head.appendChild(s2);
+    };
+    document.head.appendChild(script);
+  })();
+</script>
+<script>
+  function initEmailJS() {
+    if (typeof emailjs !== 'undefined') {
+      emailjs.init({ publicKey: 'm9jYznFQrOM0vj_mF' });
+    } else {
+      setTimeout(initEmailJS, 300);
+    }
+  }
+  initEmailJS();
 
   function openModal() {
     document.getElementById('modalOverlay').classList.add('active');
@@ -1360,6 +1379,11 @@
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       alert('Please enter a valid email address.');
+      return;
+    }
+
+    if (typeof emailjs === 'undefined') {
+      alert('Email service not loaded. Please refresh the page and try again.');
       return;
     }
 
