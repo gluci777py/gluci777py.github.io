@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2305070d' stroke='%231a6fff' stroke-width='1.5'/%3E%3Ctext x='50%25' y='44%25' dominant-baseline='central' text-anchor='middle' font-family='Arial Black,Arial,sans-serif' font-weight='900' font-size='13' fill='%23f0f4ff'%3EG%3C/text%3E%3Ctext x='50%25' y='72%25' dominant-baseline='central' text-anchor='middle' font-family='Arial Black,Arial,sans-serif' font-weight='900' font-size='9' fill='%231a6fff'%3EFX%3C/text%3E%3C/svg%3E">
+<title>Contact — GavricFX</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #05070d; --dark: #090d18; --card: #0d1225;
+    --blue: #1a6fff; --blue-glow: #1a6fff33; --blue-light: #4d8fff;
+    --blue-dim: #1040aa; --white: #f0f4ff; --muted: #7a8db3; --border: #1e2d55;
+  }
+  body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: linear-gradient(rgba(26,111,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(26,111,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px; pointer-events: none; z-index: 0;
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(5,7,13,0.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.1em; color: var(--white); text-decoration: none; }
+  .nav-logo span { color: var(--blue); }
+  .nav-back { font-size: 0.82rem; color: var(--muted); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; }
+  .nav-back:hover { color: var(--white); }
+
+  .page-wrap {
+    position: relative; z-index: 1;
+    max-width: 900px; margin: 0 auto;
+    padding: 8rem 2rem 5rem;
+  }
+
+  .page-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.8rem; }
+  .page-title { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1; letter-spacing: 0.02em; margin-bottom: 0.8rem; }
+  .page-sub { font-size: 1rem; color: var(--muted); margin-bottom: 3.5rem; max-width: 480px; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  /* INFO CARDS */
+  .info-cards { display: flex; flex-direction: column; gap: 1.2rem; }
+  .info-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: border-color 0.2s;
+  }
+  .info-card:hover { border-color: var(--blue-dim); }
+  .info-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: rgba(26,111,255,0.1);
+    border: 1px solid var(--blue-dim);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+  .info-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
+  .info-value { font-size: 0.9rem; color: var(--white); font-weight: 400; }
+  .info-value a { color: var(--blue-light); text-decoration: none; }
+  .info-value a:hover { text-decoration: underline; }
+
+  /* FORM CARD */
+  .form-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .form-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--blue), transparent);
+  }
+
+  .form-group { margin-bottom: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: var(--dark);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    resize: none;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: #3a4d6e; }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--blue); }
+  .form-group select option { background: var(--dark); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .btn-primary {
+    width: 100%;
+    background: var(--blue);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 1rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+  }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 8px 30px var(--blue-glow); }
+  .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  .success-box {
+    display: none;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  .success-icon {
+    width: 56px; height: 56px;
+    background: rgba(26,111,255,0.1);
+    border: 2px solid var(--blue);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.2rem;
+    font-size: 1.4rem;
+  }
+  .success-box h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .success-box p { font-size: 0.9rem; color: var(--muted); }
+
+  /* FOOTER */
+  .footer-legal { margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border); text-align: center; font-size: 0.78rem; color: #3a4d6e; }
+  .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; flex-wrap: wrap; }
+  .footer-links a { font-size: 0.78rem; color: #3a4d6e; text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; }
+  .footer-links a:hover { color: var(--blue); }
+
+  @media (max-width: 700px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    nav { padding: 1rem 1.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Gavric<span>FX</span></a>
+  <a class="nav-back" href="index.html">← Back to Home</a>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-label">Get in Touch</div>
+  <h1 class="page-title">CONTACT <span style="color:var(--blue)">GAVRICFX</span></h1>
+  <p class="page-sub">Have a question about the mentorship? Fill in the form and I'll get back to you personally within 24 hours.</p>
+
+  <div class="contact-grid">
+
+    <!-- LEFT: INFO -->
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="info-icon">✉️</div>
+        <div>
+          <div class="info-label">Email</div>
+          <div class="info-value"><a href="mailto:gavricfx.business@gmail.com">gavricfx.business@gmail.com</a></div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">📅</div>
+        <div>
+          <div class="info-label">Book a Call</div>
+          <div class="info-value"><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0G7UxCNs0CchA1gor-R_Z2-fI0fmwSTgEfc41_QzHjO1wFepo04iCdPdEg5isVaByDnuADECUS" target="_blank">Schedule directly →</a></div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">⚡</div>
+        <div>
+          <div class="info-label">Response Time</div>
+          <div class="info-value">Within 24 hours</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">🌍</div>
+        <div>
+          <div class="info-label">Available To</div>
+          <div class="info-value">Students worldwide</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: FORM -->
+    <div class="form-card">
+      <div id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" placeholder="Tyler" required>
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" placeholder="Johnson" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="tyler.johnson@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <select id="subject">
+            <option value="">Select a topic...</option>
+            <option>Question about the mentorship</option>
+            <option>Pricing & payment</option>
+            <option>Technical issue</option>
+            <option>Partnership or collaboration</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" rows="5" placeholder="Write your message here..."></textarea>
+        </div>
+        <button class="btn-primary" id="submitBtn" onclick="handleSubmit()">SEND MESSAGE →</button>
+      </div>
+
+      <div class="success-box" id="successBox">
+        <div class="success-icon">✓</div>
+        <h3>MESSAGE SENT!</h3>
+        <p>Thanks for reaching out. GavricFX will get back to you personally within 24 hours.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-legal">
+    <p>© 2025 GavricFX. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="disclaimer.html">Disclaimer</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init({ publicKey: 'm9jYznFQrOM0vj_mF', blockHeadless: false });
+
+  function handleSubmit() {
+    const fname = document.getElementById('fname').value.trim();
+    const lname = document.getElementById('lname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value.trim();
+
+    if (!fname || !lname || !email || !subject || !message) {
+      alert('Please fill in all fields.');
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    emailjs.send('service_0b0agzl', 'template_6u8z1qz', {
+      from_name: fname + ' ' + lname,
+      from_email: email,
+      country: subject,
+      message: message
+    }).then(() => {
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('successBox').style.display = 'block';
+    }).catch((err) => {
+      console.error(err);
+      btn.textContent = 'SEND MESSAGE →';
+      btn.disabled = false;
+      alert('Something went wrong. Please email us directly at gavricfx.business@gmail.com');
+    });
+  }
+</script>
+</body>
+</html>
