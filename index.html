@@ -172,6 +172,11 @@
   .menu-overlay.open { display: block; }
 
   @media (max-width: 768px) {
+    /* Hide desktop nav links, show hamburger */
+    nav ul { display: none; }
+    .hamburger { display: flex; }
+    nav { padding: 1rem 1.5rem; }
+
     .hero {
       padding: 0;
       min-height: 100vh;
@@ -186,9 +191,9 @@
       object-position: top center;
     }
 
-    /* Badge + title: fully below nav bar */
+    /* Badge + title: below nav bar */
     .hero-top-text {
-      top: 4rem;
+      top: 5.5rem;
       padding: 0 1rem;
       gap: 0.4rem;
     }
@@ -201,7 +206,7 @@
       line-height: 1.1;
     }
 
-    /* Subtitle: at t-shirt level, above button */
+    /* Subtitle: below neck/t-shirt level, above button */
     .hero-bottom-text {
       position: absolute;
       bottom: 230px;
@@ -214,10 +219,10 @@
       line-height: 1.5;
     }
 
-    /* Button: above stats, not covering them */
+    /* Button: between subtitle and stats */
     .hero-btn {
       position: absolute !important;
-      bottom: 155px !important;
+      bottom: 150px !important;
       left: 1rem !important;
       right: 1rem !important;
       width: calc(100% - 2rem) !important;
@@ -244,7 +249,7 @@
       padding: 0 !important;
       margin: 0 !important;
       background: rgba(5,7,13,0.97) !important;
-      height: 140px !important;
+      height: 135px !important;
     }
     .stat { padding: 0.8rem 0.5rem !important; text-align: center !important; }
     .stat:nth-child(1) { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
