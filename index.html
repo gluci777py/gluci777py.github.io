@@ -130,7 +130,7 @@
     background: var(--card);
     border-left: 1px solid var(--border);
     z-index: 150;
-    padding: 7.5rem 2rem 2rem;
+    padding: 5rem 2rem 2rem;
     flex-direction: column;
     gap: 0.5rem;
     transform: translateX(100%);
@@ -172,9 +172,10 @@
   .menu-overlay.open { display: block; }
 
   @media (max-width: 768px) {
+    /* Hide desktop nav links, show hamburger */
     nav ul { display: none; }
-    nav { padding: 1rem 1.5rem; border-bottom: none; background: rgba(5,7,13,0.85); }
     .hamburger { display: flex; }
+    nav { padding: 1rem 1.5rem; }
 
     .hero {
       padding: 0;
@@ -190,29 +191,65 @@
       object-position: top center;
     }
 
-    /* Badge + title: fully visible below nav */
+    /* Badge + title: below nav bar */
     .hero-top-text {
-      top: 6.5rem;
+      top: 5.5rem;
       padding: 0 1rem;
       gap: 0.4rem;
     }
-    .hero-top-text .hero-badge { font-size: 0.62rem; padding: 0.28rem 0.7rem; }
-    .hero-top-text h1 { font-size: clamp(1.3rem, 5.5vw, 1.9rem); line-height: 1.1; }
+    .hero-top-text .hero-badge {
+      font-size: 0.62rem;
+      padding: 0.28rem 0.7rem;
+    }
+    .hero-top-text h1 {
+      font-size: clamp(1.3rem, 5.5vw, 1.9rem);
+      line-height: 1.1;
+    }
 
-    /* Stats pinned at bottom */
+    /* Subtitle: below neck/t-shirt level, above button */
+    .hero-bottom-text {
+      position: absolute;
+      bottom: 230px;
+      left: 0; right: 0;
+      padding: 0 1.5rem;
+      width: 100%;
+    }
+    .hero-bottom-text .hero-sub {
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    /* Button: between subtitle and stats */
+    .hero-btn {
+      position: absolute !important;
+      bottom: 150px !important;
+      left: 1rem !important;
+      right: 1rem !important;
+      width: calc(100% - 2rem) !important;
+      transform: none !important;
+      font-size: 0.92rem !important;
+      padding: 0.85rem 1rem !important;
+      text-align: center !important;
+      white-space: nowrap !important;
+      z-index: 5 !important;
+    }
+
+    /* Stats: pinned at very bottom */
     .hero-stats {
       position: absolute !important;
       bottom: 0 !important;
-      left: 0 !important; right: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
       z-index: 5 !important;
       display: grid !important;
       grid-template-columns: 1fr 1fr !important;
       gap: 0 !important;
       width: 100% !important;
       border-top: 1px solid var(--border) !important;
-      padding: 0 !important; margin: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
       background: rgba(5,7,13,0.97) !important;
-      height: 130px !important;
+      height: 135px !important;
     }
     .stat { padding: 0.8rem 0.5rem !important; text-align: center !important; }
     .stat:nth-child(1) { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -220,32 +257,6 @@
     .stat:nth-child(3) { border-right: 1px solid var(--border); }
     .stat-num { font-size: 1.6rem !important; }
     .stat-label { font-size: 0.65rem !important; }
-
-    /* Button just above stats */
-    /* Button just above stats */
-     .hero-btn {
-      position: absolute !important;
-      bottom: 200px !important;
-      left: 1rem !important; right: 1rem !important;
-      width: calc(100% - 2rem) !important;
-      transform: none !important;
-      font-size: 0.92rem !important;
-      padding: 0.85rem 1rem !important;
-      text-align: center !important;
-      z-index: 5 !important;
-    }
-
-    /* Subtitle just above button */
-    /* Subtitle just above button */
-     .hero-bottom-text {
-      position: absolute !important;
-      bottom: 320px !important;
-      left: 0 !important; right: 0 !important;
-      padding: 0 1.5rem !important;
-      width: 100% !important;
-      z-index: 5 !important;
-    }
-    .hero-bottom-text .hero-sub { font-size: 0.82rem; line-height: 1.5; text-align: center; }
 
     .fcert-1, .fcert-2, .fcert-3, .fcert-4 { display: none; }
     .film-frame { width: 180px; height: 125px; }
@@ -1644,11 +1655,11 @@
     <h1>FROM BLOWN ACCOUNTS TO<br><span class="accent">FUNDED TRADER — THIS IS HOW.</span></h1>
   </div>
 
-  <!-- BOTTOM: sub text above button -->
+  <!-- BOTTOM: sub text + button together -->
   <div class="hero-bottom-text">
     <p class="hero-sub">Click below to discover my unique approach helping hundreds of traders become consistently profitable — month after month.</p>
+    <button class="btn-primary hero-btn" onclick="openModal()">GET ACCESS NOW →</button>
   </div>
-  <button class="btn-primary hero-btn" onclick="openModal()">GET ACCESS NOW →</button>
 
   <!-- Stats -->
   <div class="hero-stats">
