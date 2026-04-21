@@ -1343,11 +1343,15 @@
   })();
 </script>
 <script>
+  // Init EmailJS immediately and with retry
+  var emailJSReady = false;
   function initEmailJS() {
     if (typeof emailjs !== 'undefined') {
-      emailjs.init({ publicKey: 'm9jYznFQrOM0vj_mF' });
+      emailjs.init('m9jYznFQrOM0vj_mF');
+      emailJSReady = true;
+      console.log('EmailJS ready');
     } else {
-      setTimeout(initEmailJS, 300);
+      setTimeout(initEmailJS, 500);
     }
   }
   initEmailJS();
@@ -1387,26 +1391,54 @@
     btn.textContent = 'Sending...';
     btn.disabled = true;
 
-    // Show success screen immediately
-    document.getElementById('modalForm').style.display = 'none';
-    document.getElementById('modalSuccess').style.display = 'block';
+    // 1. Send notification to GavricFX via Formspree
+    fetch('https://formspree.io/f/xnjlbvnk', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name: fname + ' ' + lname,
+        email: email,
+        country: country,
+        _replyto: email,
+        _subject: 'New Lead: ' + fname + ' ' + lname
+      })
+    }).catch(function(){});
 
-    // Submit via hidden form to Formspree
-    var hiddenForm = document.getElementById('hiddenFormspree');
-    document.getElementById('hf_name').value = fname + ' ' + lname;
-    document.getElementById('hf_email').value = email;
-    document.getElementById('hf_country').value = country;
-    hiddenForm.submit();
-
-    // Also fire EmailJS welcome email to client
-    if (typeof emailjs !== 'undefined') {
+    // 2. Send welcome email to client via EmailJS
+    function sendWelcome() {
       emailjs.send('service_0b0agzl', 'template_wevs9cm', {
         to_name: fname,
         to_email: email,
         email: email,
         from_name: 'GavricFX'
-      }).catch(function(){});
+      })
+      .then(function() {
+        console.log('Welcome email sent successfully');
+      })
+      .catch(function(err) {
+        console.error('Welcome email failed:', JSON.stringify(err));
+      });
     }
+
+    // Wait for EmailJS to be ready then send
+    if (typeof emailjs !== 'undefined') {
+      sendWelcome();
+    } else {
+      var attempts = 0;
+      var wait = setInterval(function() {
+        attempts++;
+        if (typeof emailjs !== 'undefined') {
+          clearInterval(wait);
+          sendWelcome();
+        } else if (attempts > 20) {
+          clearInterval(wait);
+        }
+      }, 300);
+    }
+
+    // 3. Show success screen
+    document.getElementById('modalForm').style.display = 'none';
+    document.getElementById('modalSuccess').style.display = 'block';
   }
 
   document.addEventListener('keydown', (e) => {
