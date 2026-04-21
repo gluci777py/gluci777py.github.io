@@ -19,6 +19,11 @@
     --blue-glow: #1a6fff33;
     --blue-light: #4d8fff;
     --blue-dim: #1040aa;
+    --green: #00d97e;
+    --green-dim: #00a85f;
+    --green-glow: #00d97e22;
+    --teal: #00c2d1;
+    --teal-dim: #0090a8;
     --white: #f0f4ff;
     --muted: #7a8db3;
     --border: #1e2d55;
@@ -42,8 +47,8 @@
     position: fixed;
     inset: 0;
     background-image:
-      linear-gradient(rgba(26,111,255,0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(26,111,255,0.05) 1px, transparent 1px);
+      linear-gradient(rgba(26,111,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,194,209,0.04) 1px, transparent 1px);
     background-size: 60px 60px;
     pointer-events: none;
     z-index: 0;
@@ -279,13 +284,13 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: rgba(26,111,255,0.1);
-    border: 1px solid var(--blue-dim);
+    background: rgba(0,217,126,0.1);
+    border: 1px solid var(--green-dim);
     border-radius: 100px;
     padding: 0.35rem 1rem;
     font-size: 0.78rem;
     font-weight: 500;
-    color: var(--blue-light);
+    color: var(--green);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: 2rem;
@@ -294,7 +299,7 @@
   .hero-badge::before {
     content: '';
     width: 6px; height: 6px;
-    background: var(--blue);
+    background: var(--green);
     border-radius: 50%;
     animation: pulse 1.5s infinite;
   }
@@ -375,6 +380,8 @@
     color: var(--blue);
     line-height: 1;
   }
+  .stat:nth-child(2) .stat-num { color: var(--green); }
+  .stat:nth-child(4) .stat-num { color: var(--teal); }
   .stat-label {
     font-size: 0.78rem;
     color: var(--muted);
@@ -485,8 +492,8 @@
     content: '"';
     font-family: Georgia, serif;
     font-size: 5rem;
-    color: var(--blue);
-    opacity: 0.15;
+    color: var(--teal);
+    opacity: 0.2;
     position: absolute;
     top: -0.5rem;
     left: 1.5rem;
@@ -608,7 +615,7 @@
 
   .pricing-features li::before {
     content: '✓';
-    color: var(--blue);
+    color: var(--green);
     font-weight: 700;
     flex-shrink: 0;
   }
@@ -678,7 +685,7 @@
 
   .modal-top-line {
     width: 40px; height: 3px;
-    background: var(--blue);
+    background: var(--green);
     border-radius: 2px;
     margin-bottom: 1.8rem;
   }
@@ -758,8 +765,8 @@
 
   .success-icon {
     width: 64px; height: 64px;
-    background: rgba(26,111,255,0.1);
-    border: 2px solid var(--blue);
+    background: rgba(0,217,126,0.1);
+    border: 2px solid var(--green);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     margin: 0 auto 1.5rem;
@@ -825,7 +832,7 @@
   .countdown-num {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 3.2rem;
-    color: var(--blue);
+    color: var(--teal);
     line-height: 1;
   }
   .countdown-unit {
@@ -876,7 +883,7 @@
   .spots-count {
     font-size: 0.85rem;
     font-weight: 500;
-    color: var(--blue-light);
+    color: var(--green);
   }
   .spots-bar-track {
     background: var(--border);
@@ -889,7 +896,7 @@
   .spots-bar-fill {
     height: 100%;
     width: 0;
-    background: linear-gradient(90deg, var(--blue-dim), var(--blue));
+    background: linear-gradient(90deg, var(--green-dim), var(--green));
     border-radius: 100px;
     transition: width 1.2s ease;
   }
@@ -1509,7 +1516,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(26,111,255,0.08) 0%, transparent 50%);
+    background: linear-gradient(135deg, rgba(0,194,209,0.08) 0%, transparent 50%);
     pointer-events: none;
   }
 
@@ -1719,32 +1726,32 @@
   <p class="section-sub">Everything you need to go from confused to consistently profitable.</p>
   <div class="features-grid">
     <div class="feature-card reveal delay-1">
-      <div class="feature-icon">📈</div>
+      <div class="feature-icon" style="background:rgba(0,217,126,0.08);border-color:var(--green-dim)">📈</div>
       <div class="feature-title">Live Trading Sessions</div>
       <div class="feature-desc">Watch GavricFX trade live. See real entries, exits, and reasoning in real time — not just recorded highlights.</div>
     </div>
     <div class="feature-card reveal delay-2">
-      <div class="feature-icon">🎯</div>
+      <div class="feature-icon" style="background:rgba(0,194,209,0.08);border-color:var(--teal-dim)">🎯</div>
       <div class="feature-title">Personal 1-on-1 Calls</div>
       <div class="feature-desc">Book direct calls with your mentor. Get your specific questions answered and your trading reviewed personally.</div>
     </div>
     <div class="feature-card reveal delay-3">
-      <div class="feature-icon">📚</div>
+      <div class="feature-icon" style="background:rgba(0,217,126,0.08);border-color:var(--green-dim)">📚</div>
       <div class="feature-title">Full Strategy Curriculum</div>
       <div class="feature-desc">A structured, step-by-step curriculum covering market structure, entries, risk management, and trader psychology.</div>
     </div>
     <div class="feature-card reveal delay-1">
-      <div class="feature-icon">💬</div>
+      <div class="feature-icon" style="background:rgba(0,194,209,0.08);border-color:var(--teal-dim)">💬</div>
       <div class="feature-title">Private Community</div>
       <div class="feature-desc">Access to an exclusive community of serious traders. Daily signals, market analysis, and peer accountability.</div>
     </div>
     <div class="feature-card reveal delay-2">
-      <div class="feature-icon">⚡</div>
+      <div class="feature-icon" style="background:rgba(0,217,126,0.08);border-color:var(--green-dim)">⚡</div>
       <div class="feature-title">Real-Time Alerts</div>
       <div class="feature-desc">Trade alerts sent directly to you when GavricFX spots high-probability setups — with full reasoning included.</div>
     </div>
     <div class="feature-card reveal delay-3">
-      <div class="feature-icon">🔒</div>
+      <div class="feature-icon" style="background:rgba(0,194,209,0.08);border-color:var(--teal-dim)">🔒</div>
       <div class="feature-title">Lifetime Resources</div>
       <div class="feature-desc">All modules, PDFs, and recordings are yours to keep. New content added monthly at no extra cost.</div>
     </div>
