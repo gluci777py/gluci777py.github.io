@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Block search engines from indexing this page -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2305070d' stroke='%231a6fff' stroke-width='1.5'/%3E%3Ctext x='50%25' y='44%25' dominant-baseline='central' text-anchor='middle' font-family='Arial Black,Arial,sans-serif' font-weight='900' font-size='13' fill='%23f0f4ff'%3EG%3C/text%3E%3Ctext x='50%25' y='72%25' dominant-baseline='central' text-anchor='middle' font-family='Arial Black,Arial,sans-serif' font-weight='900' font-size='9' fill='%231a6fff'%3EFX%3C/text%3E%3C/svg%3E">
+<title>GavricFX — Private Mentorship Access</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --dark: #111111;
+    --card: #161616;
+    --blue: #ffffff;
+    --blue-light: #cccccc;
+    --blue-dim: #444444;
+    --white: #f5f5f5;
+    --muted: #888888;
+    --border: #2a2a2a;
+    --green: #bbbbbb;
+    --accent: #e0e0e0;
+    --gold: #f5c842;
+    --red: #e05555;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* Subtle top border */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #1a6fff, transparent);
+    z-index: 100;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    text-align: center;
+    padding: 3rem 2rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .logo span { color: var(--accent); }
+
+  .private-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #333;
+    border-radius: 100px;
+    padding: 0.25rem 0.9rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #aaa;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .private-badge::before {
+    content: '';
+    width: 5px; height: 5px;
+    background: #1a6fff;
+    border-radius: 50%;
+  }
+
+  /* ===== MAIN CONTAINER ===== */
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+  }
+
+  /* ===== INTRO ===== */
+  .intro {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .intro-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+
+  .intro h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .intro h1 span { color: var(--accent); }
+
+  .intro p {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* ===== VIDEO ===== */
+  .video-section {
+    margin-bottom: 3rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .video-wrapper {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    padding-top: 56.25%; /* 16:9 */
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+
+  /* Placeholder when no video */
+  .video-placeholder {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background: var(--card);
+    color: var(--muted);
+  }
+
+  .video-placeholder .play-icon {
+    width: 64px; height: 64px;
+    background: rgba(26,111,255,0.1);
+    border: 2px solid #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+
+  .video-placeholder p {
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  /* ===== WHAT'S INCLUDED ===== */
+  .included-section {
+    margin-bottom: 3rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+  }
+
+  .included-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .included-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    transition: border-color 0.2s;
+  }
+
+  .included-item:hover { border-color: #444; }
+
+  .included-check {
+    color: #00d97e;
+    font-size: 1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .included-text {
+    font-size: 0.88rem;
+    color: var(--white);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  /* ===== PRICING CARD ===== */
+  .pricing-card {
+    background: var(--card);
+    border: 1px solid #1a6fff;
+    border-radius: 14px;
+    padding: 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .pricing-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #1a6fff, transparent);
+  }
+
+  .trial-badge {
+    display: inline-block;
+    background: rgba(26,111,255,0.08);
+    border: 1px solid rgba(26,111,255,0.3);
+    color: #6aabff;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.4rem 1.2rem;
+    border-radius: 100px;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.02em;
+  }
+
+  .pricing-exclusive {
+    display: inline-block;
+    background: #222;
+    color: #aaa;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.9rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+
+  .pricing-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+
+  .pricing-price sup {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    vertical-align: top;
+    margin-top: 0.8rem;
+    display: inline-block;
+    color: var(--muted);
+  }
+
+  .pricing-price sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--muted);
+  }
+
+  .pricing-note {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+
+  .btn-whop {
+    display: inline-block;
+    background: #1a6fff;
+    color: #ffffff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 1rem 3rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    width: 100%;
+    display: block;
+  }
+
+  .btn-whop:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(26,111,255,0.3);
+  }
+
+  .btn-note {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 1rem;
+  }
+
+  /* ===== GUARANTEE ===== */
+  .guarantee {
+    background: rgba(0,217,126,0.04);
+    border: 1px solid rgba(0,217,126,0.15);
+    border-radius: 10px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+
+  .guarantee-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+
+  .guarantee-title {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: #00d97e;
+    margin-bottom: 0.3rem;
+  }
+
+  .guarantee-text {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ===== FAQ ===== */
+  .faq-section {
+    margin-bottom: 3rem;
+    animation: fadeUp 0.6s 0.5s ease both;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 0;
+  }
+
+  .faq-q {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .faq-a {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.78rem;
+    color: #3a4d6e;
+  }
+
+  footer .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  footer .footer-logo span { color: var(--accent); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .included-grid { grid-template-columns: 1fr; }
+    .pricing-card { padding: 1.8rem 1.2rem; }
+    .container { padding: 2rem 1.2rem 4rem; }
+  }
+
+  .pricing-crossed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .original-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: #444;
+    text-decoration: line-through;
+    text-decoration-color: #555;
+    line-height: 1;
+  }
+
+  .original-price sup {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    vertical-align: top;
+    margin-top: 0.3rem;
+    display: inline-block;
+  }
+
+  .original-price sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+  }
+
+  .discount-pill {
+    background: rgba(224,85,85,0.15);
+    color: #ff6b6b;
+    border: 1px solid rgba(224,85,85,0.3);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.3rem 0.7rem;
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+  }
+
+  .pricing-saving {
+    font-size: 0.85rem;
+    color: #999;
+    margin-bottom: 0.5rem;
+  }
+
+  .pricing-saving strong {
+    color: #00d97e;
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Gavric<span>FX</span></div>
+  <div class="private-badge">Private Access Only</div>
+</header>
+
+<div class="container">
+
+  <!-- INTRO -->
+  <div class="intro">
+    <div class="intro-label">You're Invited</div>
+    <h1>WELCOME TO THE<br><span style="color:#1a6fff">GAVRICFX MENTORSHIP</span></h1>
+    <p>You've had your call with Gavric. This page is exclusively for you. Watch the video below and secure your spot to get started today.</p>
+  </div>
+
+  <!-- VIDEO -->
+  <div class="video-section">
+    <div class="section-label">Watch This First</div>
+    <div class="video-wrapper">
+      <!-- Replace the div below with your YouTube/Vimeo embed when ready -->
+      <!-- Example: <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe> -->
+      <div class="video-placeholder">
+        <div class="play-icon">▶</div>
+        <p>Video coming soon — paste your YouTube or Vimeo link here</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT'S INCLUDED -->
+  <div class="included-section">
+    <div class="section-label">What's Included</div>
+    <div class="included-grid">
+      <div class="included-item">
+        <span class="included-check">✓</span>
+        <span class="included-text">Full strategy curriculum — all modules</span>
+      </div>
+      <div class="included-item">
+        <span class="included-check">✓</span>
+        <span class="included-text">Weekly live trading sessions with Gavric</span>
+      </div>
+      <div class="included-item">
+        <span class="included-check">✓</span>
+        <span class="included-text">1-on-1 onboarding call included</span>
+      </div>
+      <div class="included-item">
+        <span class="included-check">✓</span>
+        <span class="included-text">Private community access 24/7</span>
+      </div>
+      <div class="included-item">
+        <span class="included-check">✓</span>
+        <span class="included-text">Daily real-time trade alerts</span>
+      </div>
+      <div class="included-item">
+        <span class="included-check">✓</span>
+        <span class="included-text">Lifetime access to all materials</span>
+      </div>
+      <div class="included-item">
+        <span class="included-check">✓</span>
+        <span class="included-text">New content added every month</span>
+      </div>
+      <div class="included-item">
+        <span class="included-check">✓</span>
+        <span class="included-text">Direct access to Gavric via chat</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="pricing-card">
+    <div class="pricing-exclusive" style="background:#e0550020;border:1px solid #e05550;color:#ff6b6b;">🔥 Limited Time Offer — 29% Off</div>
+    <div class="trial-badge">🎁 3-Day Free Trial — No charge today</div>
+
+    <div class="pricing-crossed">
+      <span class="original-price"><sup>$</sup>69<sub>/mo</sub></span>
+      <span class="discount-pill">-29%</span>
+    </div>
+
+    <div class="pricing-price"><sup>$</sup>49<sub>/mo</sub></div>
+    <p class="pricing-saving">You save <strong>$20/mo</strong> — limited time only</p>
+    <p class="pricing-note">Try free for 3 days · Then $49/mo</p>
+
+    <!-- Replace href with your Whop payment link -->
+    <a href="https://whop.com" class="btn-whop" target="_blank">
+      START FREE 3-DAY TRIAL
+    </a>
+    <p class="btn-note">🔒 No charge for 3 days · Secure payment via Whop</p>
+  </div>
+
+  <!-- GUARANTEE -->
+  <div class="guarantee">
+    <div class="guarantee-icon">🛡️</div>
+    <div>
+      <div class="guarantee-title">You're in safe hands</div>
+      <div class="guarantee-text">This mentorship is designed for serious traders only. If you put in the work and follow the strategy, results follow. Gavric is available personally to make sure you succeed — this isn't a course you buy and forget.</div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <div class="section-label">Common Questions</div>
+
+    <div class="faq-item">
+      <div class="faq-q">How does the free trial work?</div>
+      <div class="faq-a">You get full access for 3 days completely free. No charge today. After 3 days, your subscription starts at $49/mo. Cancel before the trial ends and you won't be charged anything.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">When do I get access?</div>
+      <div class="faq-a">Immediately — you'll receive a welcome email with all the links and next steps within minutes of signing up.</div>
+    </div>
+
+<div class="faq-item">
+      <div class="faq-q">Is this suitable for beginners?</div>
+      <div class="faq-a">Yes — the curriculum starts from the fundamentals and builds up. Many of Gavric's most successful students started with zero trading experience.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How do I contact Gavric directly?</div>
+      <div class="faq-a">Once you're inside, you'll have direct access to Gavric through the private community. He personally responds to every member.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What markets does the mentorship cover?</div>
+      <div class="faq-a">Primarily forex and indices — the same markets Gavric trades live every day.</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">Gavric<span>FX</span></div>
+  <p>© 2025 GavricFX. This page is private and shared by invitation only.</p>
+  <p style="margin-top:0.4rem;">Trading involves risk. Past results are not indicative of future performance.</p>
+  <div style="margin-top:1.2rem;display:flex;justify-content:center;gap:2rem;">
+    <a href="vip-terms.html" style="font-size:0.78rem;color:#3a3a3a;text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;padding:0.5rem;" onmouseover="this.style.color='#888'" onmouseout="this.style.color='#3a3a3a'">Terms of Service</a>
+    <a href="vip-rules.html" style="font-size:0.78rem;color:#3a3a3a;text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;padding:0.5rem;" onmouseover="this.style.color='#888'" onmouseout="this.style.color='#3a3a3a'">Community Rules</a>
+  </div>
+</footer>
+
+</body>
+</html>
