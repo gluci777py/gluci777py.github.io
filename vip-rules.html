@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2305070d' stroke='%231a6fff' stroke-width='1.5'/%3E%3Ctext x='50%25' y='44%25' dominant-baseline='central' text-anchor='middle' font-family='Arial Black,Arial,sans-serif' font-weight='900' font-size='13' fill='%23f0f4ff'%3EG%3C/text%3E%3Ctext x='50%25' y='72%25' dominant-baseline='central' text-anchor='middle' font-family='Arial Black,Arial,sans-serif' font-weight='900' font-size='9' fill='%231a6fff'%3EFX%3C/text%3E%3C/svg%3E">
+<title>Community Rules — GavricFX Mentorship</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0a0a0a; color: #f0f0f0; font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.8; }
+  body::before { content: ''; position: fixed; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #1a6fff, transparent); z-index: 100; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2rem; border-bottom: 1px solid #1e1e1e; }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: #f0f0f0; text-decoration: none; }
+  .logo span { color: #1a6fff; }
+  .back { font-size: 0.8rem; color: #555; text-decoration: none; letter-spacing: 0.06em; }
+  .back:hover { color: #888; }
+  .wrap { max-width: 740px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+  .label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: #1a6fff; margin-bottom: 0.6rem; }
+  h1 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 0.02em; margin-bottom: 0.4rem; }
+  .date { font-size: 0.8rem; color: #444; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid #1e1e1e; }
+  .intro { font-size: 0.95rem; color: #888; margin-bottom: 2.5rem; line-height: 1.9; }
+
+  /* Rule cards */
+  .rules-grid { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 3rem; }
+
+  .rule-card {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 10px;
+    padding: 1.5rem 1.8rem;
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .rule-card:hover { border-color: #2a2a2a; }
+
+  .rule-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: #1a6fff;
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 32px;
+  }
+
+  .rule-content {}
+  .rule-title {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: #f0f0f0;
+    margin-bottom: 0.3rem;
+  }
+  .rule-desc {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.7;
+  }
+
+  /* Violations section */
+  .violations {
+    background: rgba(224,85,85,0.05);
+    border: 1px solid rgba(224,85,85,0.15);
+    border-radius: 10px;
+    padding: 1.8rem;
+    margin-bottom: 3rem;
+  }
+  .violations-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    color: #e05555;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+  }
+  .violation-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(224,85,85,0.08);
+    font-size: 0.88rem;
+    color: #666;
+  }
+  .violation-item:last-child { border-bottom: none; }
+  .violation-item::before { content: '✕'; color: #e05555; font-weight: 700; flex-shrink: 0; }
+
+  /* Mindset section */
+  .mindset {
+    background: rgba(26,111,255,0.04);
+    border: 1px solid rgba(26,111,255,0.12);
+    border-radius: 10px;
+    padding: 1.8rem;
+    margin-bottom: 3rem;
+  }
+  .mindset-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    color: #1a6fff;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+  .mindset p { font-size: 0.88rem; color: #666; line-height: 1.8; margin-bottom: 0.5rem; }
+
+  a { color: #1a6fff; }
+  footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #1e1e1e; text-align: center; font-size: 0.75rem; color: #333; }
+  .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; }
+  .footer-links a { font-size: 0.72rem; color: #333; text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; }
+  .footer-links a:hover { color: #666; }
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="vip.html">Gavric<span>FX</span></a>
+  <a class="back" href="vip.html">← Back</a>
+</nav>
+
+<div class="wrap">
+  <div class="label">Community Guidelines</div>
+  <h1>Community Rules</h1>
+  <p class="date">Effective from the date of your first access</p>
+
+  <p class="intro">The GavricFX community is built for serious traders who want real results. These rules exist to protect the quality of the environment and ensure everyone gets maximum value from the mentorship. By joining, you agree to follow these guidelines.</p>
+
+  <!-- RULES -->
+  <div class="rules-grid">
+
+    <div class="rule-card">
+      <div class="rule-number">01</div>
+      <div class="rule-content">
+        <div class="rule-title">Respect Every Member</div>
+        <div class="rule-desc">Treat all members, including Gavric and staff, with respect at all times. No insults, personal attacks, or condescending behaviour. We are all here to learn and grow.</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">02</div>
+      <div class="rule-content">
+        <div class="rule-title">No Sharing of Content</div>
+        <div class="rule-desc">Strategies, videos, alerts, trade setups, and all materials are strictly private. Do not share, screenshot, or distribute any content outside of this community. This is a zero-tolerance rule.</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">03</div>
+      <div class="rule-content">
+        <div class="rule-title">No Solicitation or Promotion</div>
+        <div class="rule-desc">Do not promote other trading courses, signal services, or any external products within this community. Do not recruit members for competing services or your own ventures.</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">04</div>
+      <div class="rule-content">
+        <div class="rule-title">Take Responsibility for Your Trades</div>
+        <div class="rule-desc">All trade alerts and analysis are educational only. You are solely responsible for every trade you place. Do not blame the mentorship or Gavric for losses — trading carries risk and results are never guaranteed.</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">05</div>
+      <div class="rule-content">
+        <div class="rule-title">Stay On Topic</div>
+        <div class="rule-desc">Keep discussions relevant to trading, markets, and the mentorship. Off-topic spam, irrelevant links, or excessive self-promotion will result in a warning or removal.</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">06</div>
+      <div class="rule-content">
+        <div class="rule-title">Ask Questions Freely</div>
+        <div class="rule-desc">There are no stupid questions. The community is a safe space to ask anything — whether you're a beginner or experienced. Gavric and senior members are here to help.</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">07</div>
+      <div class="rule-content">
+        <div class="rule-title">Be Patient with Results</div>
+        <div class="rule-desc">Trading is a skill that takes time. Do not expect overnight results. Trust the process, follow the strategy consistently, and results will follow. Impatience leads to poor decisions.</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">08</div>
+      <div class="rule-content">
+        <div class="rule-title">Keep Account Details Private</div>
+        <div class="rule-desc">Never share your trading account credentials, personal financial details, or passwords with anyone — including Gavric or staff. We will never ask for them.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- VIOLATIONS -->
+  <div class="violations">
+    <div class="violations-title">Zero Tolerance — Instant Removal</div>
+    <div class="violation-item">Sharing or leaking any mentorship content externally</div>
+    <div class="violation-item">Harassment, threats, or abusive behaviour toward any member</div>
+    <div class="violation-item">Attempting to scam or deceive members in any way</div>
+    <div class="violation-item">Recruiting members for other services or communities</div>
+    <div class="violation-item">Creating fake accounts or sharing your access credentials</div>
+  </div>
+
+  <!-- MINDSET -->
+  <div class="mindset">
+    <div class="mindset-title">The GavricFX Mindset</div>
+    <p>This community is for people who are serious about trading as a skill and a discipline. We don't chase quick wins — we build lasting, consistent edge in the markets.</p>
+    <p>Show up consistently. Apply the strategy. Ask questions when you're stuck. Help others when you can. That's how you get the most out of this mentorship.</p>
+    <p>Gavric is personally invested in your success. But success requires effort from your side too.</p>
+  </div>
+
+  <p style="font-size:0.85rem;color:#555;">For any questions or to report a violation, contact <a href="mailto:gavricfx.business@gmail.com">gavricfx.business@gmail.com</a></p>
+
+  <footer>
+    <p>© 2025 GavricFX. Private page — not for distribution.</p>
+    <div class="footer-links">
+      <a href="vip.html">Back to Offer</a>
+      <a href="vip-terms.html">Terms of Service</a>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
